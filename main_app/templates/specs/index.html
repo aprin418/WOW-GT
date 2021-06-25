@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WOW GL</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css"
+    />
+  </head>
+  <body>
+    <h1>Your Saved BIS Items</h1>
+    <hr />
+    {% for cat in cats %}
+    <p>Name: {{ cat.name }}</p>
+    <p>Age: {{ cat.age }}</p>
+    <hr />
+    {% endfor %}
+    <footer>All Rights Reserved, catcollector 2018</footer>
+  </body>
+</html>
