@@ -66,6 +66,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'specs',
+        'USER': 'spec_admin',
+        'PASSWORD': 'specs',
+        'HOST': 'localhost'
     }
 }
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Spec
 
 # Create your views here.
 def index(request):
@@ -13,10 +14,6 @@ class Spec:
         self.name = name
         self.description = description
 
-Specs = [
-    # Spec('Retibution', 'Standard ret spec'),
-    # Spec('Protection', 'Prot paladin'),
-]
-
 def specs_index(request):
-    return render(request, 'specs/index.html', {'specs': Specs})
+    specs = Spec.objects.all()
+    return render(request, 'specs/index.html', {'specs': specs})
