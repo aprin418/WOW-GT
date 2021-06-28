@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<h2>Name: {{ spec.name }}</h2>
+<p>Description: {{ spec.description }}</p>
+{% for gear in cat.gear.all %}
+<div>{{gear.name}}</div>
+{% empty %}
+<div>Spec Has No Gear :(</div>
+{% endfor %}

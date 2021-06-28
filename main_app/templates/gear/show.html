@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Gear Details</h1>
+
+<div>
+  <div>
+    <span>{{ gear.name }}</span>
+    <p>Color: {{ gear.location }}</p>
+    <p>Owned by:</p>
+    {% for spec in gear.cat_set.all %}
+    <p>{{spec.name}}</p>
+    {% empty %}
+    <p>Nobody Has This Gear</p>
+    {% endfor %}
+  </div>
+  <div>
+    <a href="{% url 'gear_update' gear.id %}">Edit</a>
+    <a href="{% url 'gear_delete' gear.id %}">Delete</a>
+  </div>
+</div>
+{% endblock %}

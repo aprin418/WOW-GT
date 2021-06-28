@@ -1,4 +1,4 @@
-{% load static %}
+{% extends 'base.html' %}{% load static %}{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,11 +12,15 @@
   <body>
     <h1>Your Saved BIS Items</h1>
     <hr />
-    {% for cat in cats %}
-    <p>Name: {{ cat.name }}</p>
-    <p>Age: {{ cat.age }}</p>
+    {% for spec in specs %}
+    <p>Name: {{ spec.name }}</p>
+    <p>location: {{ spec.description }}</p>
+    <a href="/user/{{spec.user.username}}">
+      <p>Required by: {{spec.user.username }}</p>
+    </a>
     <hr />
     {% endfor %}
     <footer>All Rights Reserved, catcollector 2018</footer>
   </body>
 </html>
+{% endblock %}

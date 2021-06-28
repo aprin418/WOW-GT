@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<h1>{{ username }}'s Gear List:</h1>
+
+{% for cat in cats %}
+<a href="/specs/{{ spec.id }}">
+  <h3>{{ spec.name }}</h3>
+</a>
+
+{% endfor %} {% endblock %}
