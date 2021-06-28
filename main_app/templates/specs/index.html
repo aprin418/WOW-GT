@@ -17,10 +17,11 @@
     <p>location: {{ spec.description }}</p>
     <a href="/user/{{spec.user.username}}">
       <p>Required by: {{spec.user.username }}</p>
+      <a href="{% url 'specs_update' spec.id %}">Update Item</a> |
+      <a href="{% url 'specs_delete' spec.id %}">DELETE This Spec</a>
     </a>
     <hr />
     {% endfor %}
-    <footer>All Rights Reserved, catcollector 2018</footer>
   </body>
 </html>
 {% endblock %}

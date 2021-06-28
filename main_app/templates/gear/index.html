@@ -2,12 +2,12 @@
 
 <h1>Gear List</h1>
 
-{% for gear in cattoys %}
+{% for gear in gear %}
 <div>
-  <a href="{% url 'gear_show' ⚙ .id %}">
+  <a href="{% url 'gear_show' gear.id %}">
     <div class="card-content">
       <span>{{ gear.name }}</span>
-      <p>Color: {{ gear.color }}</p>
+      <p>Color: {{ gear.location }}</p>
     </div>
   </a>
 </div>

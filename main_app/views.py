@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Spec, Gear
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -39,7 +39,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('/specs')
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
@@ -51,17 +51,19 @@ def profile(request, username):
 
 class SpecCreate(CreateView):
     model = Spec
-    fields = ['name','description', 'gear']
+    fields = ['name','description']
 
     def form_valid(self, form):
+        print(self.__dict__)
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
+        print(self.object)
         return HttpResponseRedirect('/specs/' + str(self.object.pk))
 
 class SpecUpdate(UpdateView):
   model = Spec
-  fields = ['name', 'description', 'gear']
+  fields = ['name', 'description']
 
   def form_valid(self, form):
     self.object = form.save(commit=False)
@@ -104,7 +106,7 @@ def gear_show(request, gear_id):
 
 class GearCreate(CreateView):
   model = Gear
-  fields = '__all__'
+  fields = "__all__"
   success_url = '/gear'
 
 class GearUpdate(UpdateView):
