@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Results</h1>
+<div>
+  {% for results in context %}
+  <p>{{ results.type }}</p>
+  <p>{{ results.name }}</p>
+</div>
+{% endfor %} {% endblock %}

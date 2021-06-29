@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import Spec, Gear
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.http import HttpResponseRedirect, request
+from django.http import HttpResponseRedirect, request, response
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+import requests
 
 def login_view(request):
      # if post, then authenticate (user submitted username and password)
@@ -48,6 +49,28 @@ def profile(request, username):
     user = User.objects.get(username=username)
     specs = Spec.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'specs': specs})
+
+def search(request):
+    response=requests.get('https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=thunderfury&orderby=id&_page=1&access_token=US4jlqRC41Z9ovt3nPDj80fNGRMJoOZLOl')
+    data = response.json()
+    # print(data['results'])
+    resultData = []
+    for item in data['results']:
+        print(item['data']['inventory_type']['name']['en_US'])
+        gearDict = {
+            'type': item['data']['inventory_type']['name']['en_US'],
+            'name': item['data']['name']['en_US'],
+        }
+        resultData.append(gearDict)
+        context = {'gearDict': resultData}
+    print(resultData)
+    print(context)
+    return render(request, 'results.html', {'context': resultData})
+
+
+def results(request):
+    print("IN RESULTS")
+    return render(request, 'results.html')
 
 class SpecCreate(CreateView):
     model = Spec
