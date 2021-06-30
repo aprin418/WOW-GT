@@ -13,7 +13,8 @@
     <h1>Your Saved BIS Items</h1>
     <hr />
     {% for spec in specs %}
-    <p>Name: {{ spec.name }}</p>
+    <a href="/specs/{{spec.id}}">{{ spec.name }}</a>
+    <p>Name:</p>
     <p>location: {{ spec.description }}</p>
     <a href="/user/{{spec.user.username}}">
       <p>Required by: {{spec.user.username }}</p>

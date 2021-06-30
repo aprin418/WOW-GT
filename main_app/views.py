@@ -45,13 +45,15 @@ def signup(request):
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
 
+@login_required
 def profile(request, username):
     user = User.objects.get(username=username)
     specs = Spec.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'specs': specs})
 
+@login_required
 def search(request):
-    response=requests.get('https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=thunderfury&orderby=id&_page=1&access_token=US4jlqRC41Z9ovt3nPDj80fNGRMJoOZLOl')
+    response=requests.get('https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=thunderfury&orderby=id&_page=1&access_token=USCzwtN3YT2mdXYZloNZm96TFy26JTQEtX')
     data = response.json()
     # print(data['results'])
     resultData = []
@@ -67,7 +69,7 @@ def search(request):
     print(context)
     return render(request, 'results.html', {'context': resultData})
 
-
+@login_required
 def results(request):
     print("IN RESULTS")
     return render(request, 'results.html')
@@ -105,10 +107,12 @@ def index(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def specs_index(request):
     specs = Spec.objects.all()
     return render(request, 'specs/index.html', {'specs': specs})
 
+@login_required
 def specs_show(request, spec_id):
         spec = Spec.objects.get(id=spec_id)
         return render(request, 'specs/show.html', {'spec': spec})
@@ -119,12 +123,15 @@ def profile(request, username):
     specs = Spec.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'specs': specs})
 
+@login_required
 def gear_index(request):
     gear = Gear.objects.all()
     return render(request, 'gear/index.html', {'gear': gear})
 
+@login_required
 def gear_show(request, gear_id):
-    gear = Gear.objects.get(id=gear_id)
+    # gear = Gear.objects.get(id=gear_id)
+    gear = Gear.objects.get(pk=gear_id)
     return render(request, 'gear/show.html', {'gear': gear})
 
 class GearCreate(CreateView):
