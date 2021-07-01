@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<h2>Name: {{ spec.name }}</h2>
-<p>Description: {{ spec.description }}</p>
-{% for gear in spec.gear.all %}
-<div>{{gear.name}}</div>
-{% empty %}
-<a href="{% url 'gear_show' gear_id=spec.pk %}">(+)</a>
-<div>Please add gear to this spec</div>
-{% endfor %}
+{% extends 'base.html' %} {% block content %}
+
+<h1>Spec Details</h1>
+
+<a rel="stylesheet" href="/specs/{{ spec.id }}/gear/create">Add Gear</a>
+<div>
+  <div>
+    <p>{{ spec.id }}</p>
+    <span>{{ spec.name }}</span>
+    <p>Color: {{ spec.description }}</p>
+  </div>
+  {% if gear %} {% for gear in gear %}
+  <a href="{% url 'gear_show' gear.id %}">{{gear.name}}</a>
+</div>
+{% endfor %} {% else %}
+<p>NO GEAR FOR THIS SPEC</p>
+{% endif %} {% endblock %}

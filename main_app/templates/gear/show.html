@@ -6,7 +6,7 @@
   <div>
     <span>{{ gear.name }}</span>
     <p>Color: {{ gear.location }}</p>
-    <p>Owned by:</p>
+    <p>Owned by:{{gear.spec_id}}</p>
     {% for spec in gear.spec_set.all %}
     <p>{{spec.name}}</p>
     {% empty %}

@@ -16,9 +16,14 @@ urlpatterns = [
     path('user/<username>/', views.profile, name='profile'),
     path('gear/', views.gear_index, name='gear_index'),
     path('gear/<int:gear_id>', views.gear_show, name='gear_show'),
-    path('gear/create/', views.GearCreate.as_view(), name='gear_create'),
+    # path('gear/create/', views.GearCreate.as_view(), name='gear_create'),
     path('gear/<int:pk>/update/', views.GearUpdate.as_view(), name='gear_update'),
     path('gear/<int:pk>/delete/', views.GearDelete.as_view(), name='gear_delete'),
-    path('search/', views.search, name='search' ),
+    path('search/', views.search, name='search'),
     path('results/', views.results, name='results'),
+
+    path('specs/<int:spec_id>/', views.specs_show, name='specs_show'),
+    path('specs/<int:spec_id>/gear/create',
+         views.gear_create, name='gear_create'),
+    path('specs/gear', views.assoc_spec_gear, name='assoc_spec_gear')
 ]

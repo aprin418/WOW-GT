@@ -1,0 +1,12 @@
+<h1>{{ spec.name }}</h1>
+<form action="{% url 'assoc_spec_gear' %}" method="post">
+  {% csrf_token %}
+  <label for="character">CHaracter</label>
+  <input name="character" type="text" />
+  <label for="name">Name</label>
+  <input name="name" type="text" />
+  <label for="location">Location</label>
+  <input name="location" type="text" />
+  <input name="spec_id" type="hidden" value="{{ spec.id }}" />{{ spec.id }}
+  <input type="submit" value="Submit" />
+</form>
