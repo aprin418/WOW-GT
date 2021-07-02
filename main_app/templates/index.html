@@ -1,4 +1,23 @@
 <!-- main_app/templates/index.html -->
 {% extends 'base.html' %} {% load static %} {% block content %}
-<a href="/specs/create">Add a New Spec!</a>
-{% endblock %}
+<h5>
+  {% if user.is_authenticated %}
+
+  <a href="/specs/"
+    >Welcome, {{ user.username }}!, Check out your saved characters</a
+  >
+</h5>
+{% else %}
+<h5>
+  <span
+    ><a href="{% url 'login' %}"
+      ><b>Please login to view your saved characters</b></a
+    ></span
+  ><span
+    ><a href="{% url 'signup' %}"
+      ><i> or signup if you don't already have an account! </i></a
+    ></span
+  >
+</h5>
+
+{% endif %}{% endblock %}

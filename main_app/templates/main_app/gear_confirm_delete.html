@@ -1,11 +1,21 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Delete Gear</h1>
+<h4>Delete Gear</h4>
 
-<h4>Are you sure you want to delete <strong>{{ gear }}</strong>?</h4>
+<h4>Are you sure you want to delete <b>{{ gear }}</b>?</h4>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Yes - Delete!" />
-  <a href="{% url 'gear_show' gear.id %}">Cancel</a>
+  <div class="center-align">
+    <input
+      class="waves-effect blue accent-4 btn-small"
+      type="submit"
+      value="Yes, remove"
+    />
+    <a
+      class="waves-effect blue accent-4 btn-small"
+      href="{% url 'gear_show' gear.id %}"
+      >No, Don't remove</a
+    >
+  </div>
 </form>
 {% endblock %}
