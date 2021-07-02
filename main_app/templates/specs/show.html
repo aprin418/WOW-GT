@@ -5,13 +5,14 @@
 <a rel="stylesheet" href="/specs/{{ spec.id }}/gear/create">Add Gear</a>
 <div>
   <div>
-    <p>{{ spec.id }}</p>
-    <span>{{ spec.name }}</span>
-    <p>Color: {{ spec.description }}</p>
+    <p>{{ spec.character }}</p>
+    <p>Spec: {{ spec.name }}</p>
+    <p>Details: {{ spec.description }}</p>
+    {% if gear %} {% for gear in gear %}
+    <a href="{% url 'gear_show' gear.id %}"
+      >{{gear.name}} - {{gear.location}}</a
+    >
   </div>
-  {% if gear %} {% for gear in gear %}
-  <a href="{% url 'gear_show' gear.id %}">{{gear.name}}</a>
+  <div></div>
 </div>
-{% endfor %} {% else %}
-<p>NO GEAR FOR THIS SPEC</p>
-{% endif %} {% endblock %}
+{% endfor %} {% else %} {% endif %} {% endblock %}

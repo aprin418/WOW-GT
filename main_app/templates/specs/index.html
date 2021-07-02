@@ -10,16 +10,14 @@
     />
   </head>
   <body>
-    <h1>Your Saved BIS Items</h1>
+    <h1>Your Saved Characters and Specs</h1>
     <hr />
     {% for spec in specs %}
-    <a href="/specs/{{spec.id}}">{{ spec.name }}</a>
-    <p>Name:</p>
-    <p>location: {{ spec.description }}</p>
-    <a href="/user/{{spec.user.username}}">
-      <p>Required by: {{spec.user.username }}</p>
-      <a href="{% url 'specs_update' spec.id %}">Update Item</a> |
-      <a href="{% url 'specs_delete' spec.id %}">DELETE This Spec</a>
+    <a href="/specs/{{spec.id}}">{{ spec.character }}</a>
+    <p>Spec: {{spec.name}}</p>
+    <p>Note: {{ spec.description }}</p>
+      <a href="{% url 'specs_update' spec.id %}">Update Spec</a> |
+      <a href="{% url 'specs_delete' spec.id %}">Remove This Spec</a>
     </a>
     <hr />
     {% endfor %}

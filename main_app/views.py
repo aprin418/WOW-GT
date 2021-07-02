@@ -23,7 +23,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/user/'+u)
+                    return HttpResponseRedirect('/specs/')
                 else:
                     print('The account has been disabled.')
             else:
@@ -35,7 +35,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/specs')
+    return HttpResponseRedirect('/')
 
 
 def signup(request):
@@ -50,7 +50,6 @@ def signup(request):
         return render(request, 'signup.html', {'form': form})
 
 
-@login_required
 def profile(request, username):
     user = User.objects.get(username=username)
     specs = Spec.objects.filter(user=user)
@@ -118,6 +117,7 @@ def index(request):
     return render(request, 'index.html')
 
 
+@login_required
 def about(request):
     return render(request, 'about.html')
 
@@ -136,8 +136,8 @@ def specs_index(request):
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    specs = Spec.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'specs': specs})
+    # specs = Spec.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username})
 
 
 @login_required
@@ -160,13 +160,18 @@ def gear_show(request, gear_id):
 
 class GearUpdate(UpdateView):
     model = Gear
-    fields = ['name', 'location']
-    success_url = '/gear'
+    fields = ['name', 'slot', 'location', 'enchant']
+    # success_url = '/specs'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return HttpResponseRedirect('/gear/' + str(self.object.pk))
 
 
 class GearDelete(DeleteView):
     model = Gear
-    success_url = '/gear'
+    success_url = '/specs'
 
 
 def parse_data(data):
@@ -226,7 +231,9 @@ def assoc_spec_gear(request):
     print('( NEW X )', x)
     g = Gear(
         name=x.get('name'),
+        slot=x.get('slot'),
         location=x.get('location'),
+        enchant=x.get('enchant'),
         user_id=request.user.id,
         spec_id=int(x.get('spec_id'))
     )

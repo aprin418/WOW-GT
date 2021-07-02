@@ -5,13 +5,12 @@
 <div>
   <div>
     <span>{{ gear.name }}</span>
-    <p>Color: {{ gear.location }}</p>
-    <p>Owned by:{{gear.spec_id}}</p>
+    <p>Slot: {{ gear.slot }}</p>
+    <p>Location: {{ gear.location }}</p>
+    <p>Enchantment: {{ gear.enchant }}</p>
     {% for spec in gear.spec_set.all %}
     <p>{{spec.name}}</p>
-    {% empty %}
-    <p>Nobody Has This Gear</p>
-    {% endfor %}
+    {% empty %} {% endfor %}
   </div>
   <div>
     <a href="{% url 'gear_update' gear.id %}">Edit</a>
