@@ -10,35 +10,33 @@
 </div>
 
 <div class="row">
-  <div class="container">
-    {% for spec in specs %}
-    <div class="col s4" href="/specs/{{spec.id}}">
-      <div class="blue-grey">
-        <a href="/specs/{{spec.id}}">
-          <div class="card-content white-text">
-            <p class="center-align">{{ spec.character }}</p>
-            <p class="center-align">Spec: {{spec.name}}</p>
-            <p class="center-align">Note: {{ spec.description }}</p>
-          </div>
-        </a>
-        <div class="center-align">
-          <a
-            class="waves-effect blue accent-4 btn-small"
-            href="{% url 'specs_update' spec.id %}"
-          >
-            Update Spec
-          </a>
-          |
-          <a
-            class="waves-effect blue accent-4 btn-small"
-            href="{% url 'specs_delete' spec.id %}"
-          >
-            Remove This Spec
-          </a>
+  {% for spec in specs %}
+  <div class="col s4" href="/specs/{{spec.id}}">
+    <div class="indigo darken-4">
+      <a href="/specs/{{spec.id}}">
+        <div class="card-content white-text">
+          <p class="center-align">{{ spec.character }}</p>
+          <p class="center-align">Spec: {{spec.name}}</p>
+          <p class="center-align">Note: {{ spec.description }}</p>
         </div>
+      </a>
+      <div class="center-align">
+        <a
+          class="waves-effect blue accent-4 btn-small"
+          href="{% url 'specs_update' spec.id %}"
+        >
+          Update Spec
+        </a>
+        |
+        <a
+          class="waves-effect blue accent-4 btn-small"
+          href="{% url 'specs_delete' spec.id %}"
+        >
+          Remove This Spec
+        </a>
       </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </div>
 {% endblock %}

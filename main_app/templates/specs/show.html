@@ -14,18 +14,16 @@
   >
 </div>
 <div class="row">
-  <div class="container">
-    {% if gear %} {% for gear in gear %}
-    <div class="col s4">
-      <div class="card blue-grey">
-        <a href="{% url 'gear_show' gear.id %}">
-          <div class="card-content gold-text">
-            {{gear.name}} - {{gear.location}}
-          </div>
-        </a>
-      </div>
+  {% if gear %} {% for gear in gear %}
+  <div class="col s4">
+    <div class="card blue-grey">
+      <a href="{% url 'gear_show' gear.id %}">
+        <div class="card-content gold-text">
+          {{gear.name}} - {{gear.location}}
+        </div>
+      </a>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </div>
 {% else %} {% endif %} {% endblock %}
