@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}{% load static %}{% block content %}
 <h1>{{ spec.name }}</h1>
 <form action="{% url 'assoc_spec_gear' %}" method="post">
   {% csrf_token %}
@@ -12,5 +14,12 @@
   <label for="enchant">Enchantment</label>
   <input name="enchant" type="text" />
   <input name="spec_id" type="hidden" value="{{ spec.id }}" />
-  <input type="submit" value="Submit" />
+  <div class="center-align">
+    <input
+      class="waves-effect blue accent-4 btn-small"
+      type="submit"
+      value="Submit"
+    />
+  </div>
 </form>
+{% endblock %}

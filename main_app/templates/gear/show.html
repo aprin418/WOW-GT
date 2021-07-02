@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Gear Details</h1>
+<h3>Gear Details</h3>
 
-<div>
+<div class="center-align">
   <div>
-    <span>{{ gear.name }}</span>
+    <p>{{ gear.name }}</p>
     <p>Slot: {{ gear.slot }}</p>
     <p>Location: {{ gear.location }}</p>
     <p>Enchantment: {{ gear.enchant }}</p>
@@ -13,8 +13,16 @@
     {% empty %} {% endfor %}
   </div>
   <div>
-    <a href="{% url 'gear_update' gear.id %}">Edit</a>
-    <a href="{% url 'gear_delete' gear.id %}">Delete</a>
+    <a
+      class="waves-effect blue accent-4 btn-small"
+      href="{% url 'gear_update' gear.id %}"
+      >Edit</a
+    >
+    <a
+      class="waves-effect blue accent-4 btn-small"
+      href="{% url 'gear_delete' gear.id %}"
+      >Delete</a
+    >
   </div>
 </div>
 {% endblock %}

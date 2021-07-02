@@ -1,14 +1,21 @@
+<!DOCTYPE html>
 {% extends 'base.html' %} {% block content %}
 
 <h1>Gear List</h1>
-
-{% for gear in gear %}
-<div>
-  <a href="{% url 'gear_show' gear.id %}">
-    <div class="card-content">
-      <span>{{ gear.name }}</span>
-      <p>Location: {{ gear.location }}</p>
-    </div>
-  </a>
+<div class="container">
+  <hr />
+  <div class="row">
+    {% for gear in gear %}
+    <a class="col s4" href="/specs/{{spec.id}}">
+      <div class="card light-blue">
+        <div class="card-content white-text">
+          <p>{{ gear.name }}</p>
+          <p>Location: {{ gear.location }}</p>
+        </div>
+      </div>
+      <hr />
+    </a>
+    {% endfor %}
+  </div>
 </div>
-{% endfor %} {% endblock %}
+{% endblock %}

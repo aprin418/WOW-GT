@@ -97,7 +97,7 @@ class SpecCreate(CreateView):
 
 class SpecUpdate(UpdateView):
     model = Spec
-    fields = ['name', 'description']
+    fields = ['character', 'name', 'description']
 
     def form_valid(self, form):
         self.object = form.save(commit=False)

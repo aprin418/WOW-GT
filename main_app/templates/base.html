@@ -1,13 +1,14 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
+
 <html>
   <head>
     <title>WOWGL</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
   </head>
   <body>
     <header>
@@ -30,11 +31,7 @@
       </a>
     </header>
     <hr />
-
-    <hr />
-
     {% block content %} {% endblock %}
-
-    <footer>All Rights Reserved, WOW-GL 2021</footer>
+    <footer class="center-align">All Rights Reserved, WOW-GL 2021</footer>
   </body>
 </html>

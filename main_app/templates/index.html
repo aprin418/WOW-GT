@@ -1,13 +1,4 @@
 <!-- main_app/templates/index.html -->
 {% extends 'base.html' %} {% load static %} {% block content %}
 <a href="/specs/create">Add a New Spec!</a>
-<hr />
-{% for spec in specs %}
-<a href="/specs/{{spec.id}}">
-  <p>Name: {{ spec.name }}</p>
-</a>
-<a href="/user/{{spec.user.username}}">
-  <p>Used by By: {{spec.user.username}}</p>
-</a>
-<hr />
-{% endfor %} {% endblock %}
+{% endblock %}

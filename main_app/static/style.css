@@ -1,7 +1,37 @@
 h1 {
+  text-align: center;
   color: gold;
 }
 
-title {
+body {
+  background-color: black;
+}
+
+p {
+  color: gold;
+}
+
+footer {
+  color: gold;
+}
+
+h3 {
+  text-align: center;
+  color: gold;
+}
+
+input {
+  color: gold;
+}
+
+form {
+  color: gold;
+}
+
+a {
+  color: gold;
+}
+
+div {
   color: gold;
 }

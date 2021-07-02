@@ -1,18 +1,31 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Spec Details</h1>
+<h3>Spec Details</h3>
 
-<a rel="stylesheet" href="/specs/{{ spec.id }}/gear/create">Add Gear</a>
-<div>
-  <div>
-    <p>{{ spec.character }}</p>
-    <p>Spec: {{ spec.name }}</p>
-    <p>Details: {{ spec.description }}</p>
-    {% if gear %} {% for gear in gear %}
-    <a href="{% url 'gear_show' gear.id %}"
-      >{{gear.name}} - {{gear.location}}</a
-    >
-  </div>
-  <div></div>
+<div class="center-align">
+  <p>{{ spec.character }}</p>
+  <p>Spec: {{ spec.name }}</p>
+  <p>Details: {{ spec.description }}</p>
+  <a
+    class="waves-effect blue accent-4 btn-small"
+    rel="stylesheet"
+    href="/specs/{{ spec.id }}/gear/create"
+    >Add Gear</a
+  >
 </div>
-{% endfor %} {% else %} {% endif %} {% endblock %}
+<div class="row">
+  <div class="container">
+    {% if gear %} {% for gear in gear %}
+    <div class="col s4">
+      <div class="card blue-grey">
+        <a href="{% url 'gear_show' gear.id %}">
+          <div class="card-content gold-text">
+            {{gear.name}} - {{gear.location}}
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% else %} {% endif %} {% endblock %}
