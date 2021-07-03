@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
-dj-database-url = "*"
 django-heroku = "*"
 psycopg2 = "*"
 gunicorn = "*"
