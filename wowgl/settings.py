@@ -1,9 +1,9 @@
 from pathlib import Path
 import environ
-from dotenv import load_dotenv, dotenv_values
-load_dotenv()
-config = dotenv_values(".env")
-print('( config )', config)
+# from dotenv import load_dotenv, dotenv_values
+# load_dotenv()
+# config = dotenv_values(".env")
+# print('( config )', config)
 
 env = environ.Env()
 environ.Env.read_env()
