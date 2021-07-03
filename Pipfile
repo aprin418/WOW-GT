@@ -13,6 +13,8 @@ psycopg2-binary = "*"
 django = "*"
 whitenoise = "*"
 environ = "*"
+django-environ = "*"
+requests = "*"
 
 [dev-packages]
 
