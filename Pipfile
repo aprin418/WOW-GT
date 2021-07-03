@@ -12,6 +12,7 @@ gunicorn = "*"
 psycopg2-binary = "*"
 django = "*"
 whitenoise = "*"
+environ = "*"
 
 [dev-packages]
 
