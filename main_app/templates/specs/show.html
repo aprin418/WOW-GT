@@ -16,7 +16,7 @@
 <div class="row">
   {% if gear %} {% for gear in gear %}
   <div class="col s4">
-    <div class="card blue-grey">
+    <div class="card indigo darken-4">
       <a href="{% url 'gear_show' gear.id %}">
         <div class="card-content gold-text">
           {{gear.name}} - {{gear.location}}

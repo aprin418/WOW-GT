@@ -59,7 +59,7 @@ def profile(request, username):
 @login_required
 def search(request):
     response = requests.get(
-        'https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=thunderfury&orderby=id&_page=1&access_token=USCzwtN3YT2mdXYZloNZm96TFy26JTQEtX')
+        'https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=power&orderby=id&_page=1&access_token=USOu9OOJYc5FZCZUOiYmPrcOydkWwSaAEd')
     data = response.json()
     # print(data['results'])
     resultData = []

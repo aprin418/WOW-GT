@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-dotenv = "*"
+dj-database-url = "*"
+django-heroku = "*"
+psycopg2 = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+django = "*"
+whitenoise = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
