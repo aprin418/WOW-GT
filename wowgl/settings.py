@@ -1,3 +1,4 @@
+import os  # new
 from pathlib import Path
 import environ
 # from dotenv import load_dotenv, dotenv_values
