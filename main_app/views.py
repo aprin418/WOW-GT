@@ -124,13 +124,10 @@ def about(request):
 
 @login_required
 def specs_index(request):
-    specs = Spec.objects.all()
+    # specs = Spec.objects.all()
+    specs = Spec.objects.filter(id=request.user.id)
+    print(specs)
     return render(request, 'specs/index.html', {'specs': specs})
-
-# @login_required
-# def specs_show(request, spec_id):
-#         spec = Spec.objects.get(id=spec_id)
-#         return render(request, 'specs/show.html', {'spec': spec})
 
 
 @login_required
@@ -151,11 +148,6 @@ def gear_show(request, gear_id):
     # gear = Gear.objects.get(id=gear_id)
     gear = Gear.objects.get(pk=gear_id)
     return render(request, 'gear/show.html', {'gear': gear})
-
-# class GearCreate(CreateView):
-#   model = Gear
-#   fields = "__all__"
-#   success_url = '/gear'
 
 
 class GearUpdate(UpdateView):
@@ -198,6 +190,7 @@ def parse_data(data):
     return product
 
 
+@login_required
 def specs_show(request, spec_id):
     spec = Spec.objects.get(id=spec_id)
     gear = Gear.objects.filter(spec=spec_id)
@@ -208,6 +201,7 @@ def specs_show(request, spec_id):
     return render(request, 'specs/show.html', data)
 
 
+@login_required
 def gear_create(request, spec_id):
     spec = Spec.objects.get(id=spec_id)
     user = request.user
