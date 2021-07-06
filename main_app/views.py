@@ -125,7 +125,7 @@ def about(request):
 @login_required
 def specs_index(request):
     # specs = Spec.objects.all()
-    specs = Spec.objects.filter(id=request.user.id)
+    specs = Spec.objects.filter(user_id=request.user.id)
     print(specs)
     return render(request, 'specs/index.html', {'specs': specs})
 
