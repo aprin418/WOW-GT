@@ -13,7 +13,6 @@ import json
 
 
 def login_view(request):
-    # if post, then authenticate (user submitted username and password)
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
@@ -28,7 +27,7 @@ def login_view(request):
                     print('The account has been disabled.')
             else:
                 print('The username and/or password is incorrect.')
-    else:  # it was a get request so send the emtpy login form
+    else:
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
 
@@ -61,7 +60,6 @@ def search(request):
     response = requests.get(
         'https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=power&orderby=id&_page=1&access_token=USOu9OOJYc5FZCZUOiYmPrcOydkWwSaAEd')
     data = response.json()
-    # print(data['results'])
     resultData = []
     for item in data['results']:
         print(item['data']['inventory_type']['name']['en_US'])
@@ -110,8 +108,6 @@ class SpecDelete(DeleteView):
     model = Spec
     success_url = '/specs'
 
-# Create your views here.
-
 
 def index(request):
     return render(request, 'index.html')
@@ -124,7 +120,6 @@ def about(request):
 
 @login_required
 def specs_index(request):
-    # specs = Spec.objects.all()
     specs = Spec.objects.filter(user_id=request.user.id)
     print(specs)
     return render(request, 'specs/index.html', {'specs': specs})
@@ -133,7 +128,6 @@ def specs_index(request):
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    # specs = Spec.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username})
 
 
@@ -145,7 +139,6 @@ def gear_index(request):
 
 @login_required
 def gear_show(request, gear_id):
-    # gear = Gear.objects.get(id=gear_id)
     gear = Gear.objects.get(pk=gear_id)
     return render(request, 'gear/show.html', {'gear': gear})
 
@@ -153,7 +146,6 @@ def gear_show(request, gear_id):
 class GearUpdate(UpdateView):
     model = Gear
     fields = ['name', 'slot', 'location', 'enchant']
-    # success_url = '/specs'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -171,16 +163,11 @@ def parse_data(data):
     if 'csrfmiddlewaretoken' in data[0]:
         product['csrfmiddlewaretoken'] = data[0].split('=')[1]
         data.pop(0)
-    #     print('( new data )', data)
-    # print('( woah MULE )')
     for item in data:
-        # print('( item )', item)
-        # new_phrase = None
         if '+' in item:
             new_key = item.split('=')[0]
             words = item.split('=')[1].split('+')
             new_words = (' ').join(words)
-            # print('( final phase )', new_words)
             product[new_key] = new_words
         else:
             new_key = item.split('=')[0]
@@ -211,16 +198,8 @@ def gear_create(request, spec_id):
 
 def assoc_spec_gear(request):
     split_form_data = request.body.decode('utf-8').split('&')
-    # print(type(request.body))
-    # print(split_form_data)
-    # print('spec split form data', split_form_data)
     x = parse_data(split_form_data)
-    # print('( x )', x)
     print(request.user.id)
-    # new_age = int(x.get('age'))
-    # x['age']= new_age
-    # new_spec = int(x.get('spec').split("'")[0]) # 1
-    # x['spec'] = new_spec
 
     print('( NEW X )', x)
     g = Gear(
