@@ -1,13 +1,15 @@
 {% extends 'base.html' %} {% block content %}
-<form autocomplete="off" method="post">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <div class="center-align">
-    <button class="waves-effect blue accent-4 btn-small">
-      <input type="submit" value="Submit" />
-    </button>
-  </div>
-</form>
+<div class="container">
+  <form autocomplete="off" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <div class="center-align">
+      <button class="waves-effect blue accent-4 btn-small">
+        <input type="submit" value="Submit" />
+      </button>
+    </div>
+  </form>
+</div>
 {% endblock %}

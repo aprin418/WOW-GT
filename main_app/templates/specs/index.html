@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}{% load static %}{% block content %}
+<div class="container">
+  <h4>Your Saved Characters and Specs</h4>
 
-<h4>Your Saved Characters and Specs</h4>
+  <div class="center-align">
+    <a class="waves-effect blue accent-4 btn-small" href="/specs/create"
+      >Add a New Spec!</a
+    >
+  </div>
 
-<div class="center-align">
-  <a class="waves-effect blue accent-4 btn-small" href="/specs/create"
-    >Add a New Spec!</a
-  >
-</div>
-
-<div class="row">
-  {% for spec in specs %}
-  <div class="col s4" href="/specs/{{spec.id}}">
-    <div class="indigo darken-4">
-      <a href="/specs/{{spec.id}}">
-        <div class="card-content white-text">
-          <p class="center-align">{{ spec.character }}</p>
-          <p class="center-align">Spec: {{spec.name}}</p>
-          <p class="center-align">Note: {{ spec.description }}</p>
+  <div class="row">
+    {% for spec in specs %}
+    <div class="col s4" href="/specs/{{spec.id}}">
+      <div class="indigo darken-4">
+        <a href="/specs/{{spec.id}}">
+          <div class="card-content white-text">
+            <p class="center-align">{{ spec.character }}</p>
+            <p class="center-align">Spec: {{spec.name}}</p>
+            <p class="center-align">Note: {{ spec.description }}</p>
+          </div>
+        </a>
+        <div class="center-align">
+          <a
+            class="waves-effect blue accent-4 btn-small"
+            href="{% url 'specs_update' spec.id %}"
+          >
+            Update Spec
+          </a>
+          |
+          <a
+            class="waves-effect blue accent-4 btn-small"
+            href="{% url 'specs_delete' spec.id %}"
+          >
+            Remove This Spec
+          </a>
         </div>
-      </a>
-      <div class="center-align">
-        <a
-          class="waves-effect blue accent-4 btn-small"
-          href="{% url 'specs_update' spec.id %}"
-        >
-          Update Spec
-        </a>
-        |
-        <a
-          class="waves-effect blue accent-4 btn-small"
-          href="{% url 'specs_delete' spec.id %}"
-        >
-          Remove This Spec
-        </a>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 {% endblock %}

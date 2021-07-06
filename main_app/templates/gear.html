@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}{% load static %}{% block content %}
-<h1>{{ spec.name }}</h1>
-<form autocomplete="off" action="{% url 'assoc_spec_gear' %}" method="post">
-  {% csrf_token %}
-  <label for="name">Name</label>
-  <input name="name" type="text" />
-  <label for="slot">Slot</label>
-  <input name="slot" type="text" />
-  <label for="location">Location</label>
-  <input name="location" type="text" />
-  <label for="enchant">Enchantment</label>
-  <input name="enchant" type="text" />
-  <input name="spec_id" type="hidden" value="{{ spec.id }}" />
-  <div class="center-align">
-    <input
-      class="waves-effect blue accent-4 btn-small"
-      type="submit"
-      value="Submit"
-    />
-  </div>
-</form>
+<div class="container">
+  <h1>{{ spec.name }}</h1>
+  <form autocomplete="off" action="{% url 'assoc_spec_gear' %}" method="post">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input name="name" type="text" />
+    <label for="slot">Slot:</label>
+    <input name="slot" type="text" />
+    <label for="location">Location:</label>
+    <input name="location" type="text" />
+    <label for="enchant">Enchantment:</label>
+    <input name="enchant" type="text" />
+    <input name="spec_id" type="hidden" value="{{ spec.id }}" />
+    <div class="center-align">
+      <input
+        class="waves-effect blue accent-4 btn-small"
+        type="submit"
+        value="Submit"
+      />
+    </div>
+  </form>
+</div>
 {% endblock %}
