@@ -49,7 +49,8 @@ Use the app to save your desired gear to a specific character and spec to allow 
 
 ### One to many association of gear to a single user created spec
 
-```def assoc_spec_gear(request):
+```
+def assoc_spec_gear(request):
     split_form_data = request.body.decode('utf-8').split('&')
     x = parse_data(split_form_data)
     print(request.user.id)
@@ -74,7 +75,8 @@ Use the app to save your desired gear to a specific character and spec to allow 
 
 ### Template for gear creation and association
 
-```<div class="container">
+```
+<div class="container">
   <h1>{{ spec.name }}</h1>
   <form autocomplete="off" action="{% url 'assoc_spec_gear' %}" method="post">
     {% csrf_token %}
@@ -96,6 +98,31 @@ Use the app to save your desired gear to a specific character and spec to allow 
     </div>
   </form>
 </div>
+```
+
+### Models for gear and specs
+
+```
+class Spec(models.Model):
+    character = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+class Gear(models.Model):
+    name = models.CharField(max_length=100)
+    slot = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    enchant = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    spec = models.ForeignKey(Spec, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 ```
 
 ## Contact
@@ -121,7 +148,8 @@ Project Link: [https://github.com/aprin418/WOW-GT](https://github.com/aprin418/W
 
 ### Code snippet of initial phases of search route
 
-```@login_required
+```
+@login_required
 def search(request):
     response = requests.get(
         'https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=power&orderby=id&_page=1&access_token=API-KEY')
