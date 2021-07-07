@@ -125,6 +125,28 @@ class Gear(models.Model):
         return self.name
 ```
 
+### Function to parse data while adding gear to spec
+
+```
+def parse_data(data):
+    product = {}
+    if 'csrfmiddlewaretoken' in data[0]:
+        product['csrfmiddlewaretoken'] = data[0].split('=')[1]
+        data.pop(0)
+    for item in data:
+        if '+' in item:
+            new_key = item.split('=')[0]
+            words = item.split('=')[1].split('+')
+            new_words = (' ').join(words)
+            product[new_key] = new_words
+        else:
+            new_key = item.split('=')[0]
+            new_value = item.split('=')[1]
+            product[new_key] = new_value
+
+    return product
+```
+
 ## Contact
 
 Aaron Prince - aprin418@gmail.com
