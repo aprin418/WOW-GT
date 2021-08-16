@@ -14,7 +14,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'wow-gt.herokuapp.com'
+    'wow-gt.herokuapp.com',
+    'localhost'
 ]
 
 INSTALLED_APPS = [

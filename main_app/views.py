@@ -103,7 +103,7 @@ class SpecUpdate(UpdateView):
         return HttpResponseRedirect('/specs/' + str(self.object.pk))
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(name='dispatch')
 class SpecDelete(DeleteView):
     model = Spec
     success_url = '/specs'
@@ -118,7 +118,6 @@ def about(request):
     return render(request, 'about.html')
 
 
-@login_required
 def specs_index(request):
     specs = Spec.objects.filter(user_id=request.user.id)
     print(specs)
@@ -131,13 +130,11 @@ def profile(request, username):
     return render(request, 'profile.html', {'username': username})
 
 
-@login_required
 def gear_index(request):
     gear = Gear.objects.all()
     return render(request, 'gear/index.html', {'gear': gear})
 
 
-@login_required
 def gear_show(request, gear_id):
     gear = Gear.objects.get(pk=gear_id)
     return render(request, 'gear/show.html', {'gear': gear})
@@ -177,7 +174,6 @@ def parse_data(data):
     return product
 
 
-@login_required
 def specs_show(request, spec_id):
     spec = Spec.objects.get(id=spec_id)
     gear = Gear.objects.filter(spec=spec_id)
@@ -188,7 +184,6 @@ def specs_show(request, spec_id):
     return render(request, 'specs/show.html', data)
 
 
-@login_required
 def gear_create(request, spec_id):
     spec = Spec.objects.get(id=spec_id)
     user = request.user
